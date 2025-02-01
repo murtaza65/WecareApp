@@ -55,4 +55,11 @@ class User extends Authenticatable
         # code...
         return $this->hasMany(Messages::class, 'user_id');
     }
+
+    public function goals()
+    {
+        # code...
+        return $this->hasMany(Goal::class, 'user_id');
+    }
+
 }

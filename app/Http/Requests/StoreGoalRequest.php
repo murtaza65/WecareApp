@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,7 +10,7 @@ class StoreGoalRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +21,11 @@ class StoreGoalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'       => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'due_date'    => 'nullable|date',
+            'completed'   => 'boolean',
+            'icon'        => 'required|string',
         ];
     }
 }

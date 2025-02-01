@@ -14,6 +14,11 @@ class Goal extends Model
         'comments' => 'array', // Ensure comments are handled as an array
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function progress()
     {
         return $this->hasMany(Progress::class);

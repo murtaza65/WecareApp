@@ -1,10 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Progress;
 use App\Http\Requests\StoreProgressRequest;
 use App\Http\Requests\UpdateProgressRequest;
+use App\Models\Goal;
+use App\Models\Progress;
+use Illuminate\Http\Request;
 
 class ProgressController extends Controller
 {
@@ -14,6 +15,8 @@ class ProgressController extends Controller
     public function index()
     {
         //
+        $goals = Goal::with('comments')->get();
+        return view('goals.index', compact('goals'));
     }
 
     /**
@@ -63,4 +66,30 @@ class ProgressController extends Controller
     {
         //
     }
+
+    public function toggleLike($id)
+    {
+        $goal        = Goal::find($id);
+        $goal->liked = ! $goal->liked;
+        $goal->save();
+
+        return redirect()->route('goals.index');
+    }
+
+    public function deleteGoal($id)
+    {
+        $goal = Goal::find($id);
+        $goal->delete();
+
+        return redirect()->route('goals.index');
+    }
+
+    public function addComment(Request $request, $id)
+    {
+        $goal = Goal::find($id);
+        $goal->comments()->create(['text' => $request->new_comment]);
+
+        return redirect()->route('goals.index');
+    }
+
 }

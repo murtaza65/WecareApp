@@ -1,12 +1,11 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url("https://fonts.bunny.net/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import 'bootstrap/scss/bootstrap';
-
+@import "bootstrap/scss/bootstrap";
 
 .rate {
     color: rgb(37, 37, 35);
@@ -215,8 +214,8 @@ section .message {
     margin-top: auto;
 }
 
-.nav-link{
-    color: white!important;
+.nav-link {
+    color: white !important;
 }
 
 section .title {
@@ -226,16 +225,77 @@ section .title {
     text-decoration: none;
 }
 
-
-.sidebar-opt{
-     border-top-right-radius: 30px;
-    background-color: rgb(53, 53, 53)!important;
+.sidebar-opt {
+    border-top-right-radius: 30px;
+    background-color: rgb(53, 53, 53) !important;
     color: white;
 }
 
-.sidebar-opt-doctor{
+.sidebar-opt-doctor {
     border-top-right-radius: 30px;
-   background-color: rgb(34, 87, 100)!important;
-   color: white;
+    background-color: rgb(34, 87, 100) !important;
+    color: white;
 }
 
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.login-box {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+.btn-outline-dark {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.btn-outline-dark:hover {
+    background-color: #ffffff;
+    color: #121212;
+}
+
+a {
+    color: #bb86fc;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+.goal-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.goal-item {
+    background: #282828;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goal-icon {
+    font-size: 30px;
+    margin-right: 15px;
+    color: white;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #28a745;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 10px;
+    color: white;
+}

@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Reminder;
 use App\Http\Requests\StoreReminderRequest;
 use App\Http\Requests\UpdateReminderRequest;
+use App\Models\Goal;
+use App\Models\Reminder;
 
 class ReminderController extends Controller
 {
@@ -13,7 +13,11 @@ class ReminderController extends Controller
      */
     public function index()
     {
-        //
+                                      //
+        $goals     = Goal::all();     // Assuming 'Goal' is a model for goals
+        $reminders = Reminder::all(); // Assuming 'Reminder' is a model for reminders
+
+        return view('goals_and_reminders', compact('goals', 'reminders'));
     }
 
     /**
