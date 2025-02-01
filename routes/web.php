@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
@@ -61,7 +62,7 @@ Route::middleware([
     Route::resource('/reminders', ReminderController::class);
     Route::resource('/support', SupportController::class);
 
-    // Route::get('/community', ->name('add-community-members');
+    Route::resource('/community', CommunityController::class);
 
-    Route::get('/profile', ProfileController::class);
+    Route::resource('/profile', ProfileController::class);
 });
