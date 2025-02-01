@@ -1,2 +1,1 @@
-# hospital
-Hospital management project
+Wecare app
