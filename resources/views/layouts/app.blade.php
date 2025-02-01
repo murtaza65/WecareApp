@@ -54,8 +54,8 @@
 																				<div class="p-2"><img src="{{ url('images/logo.png') }}"
 																												style="height:35px;border-right:1px solid #000 " class="pr-3"></div>
 																				<div class="pl-1">
-																								<h3><strong><a class="text-light"
-																																				href="{{ route('welcome') }}">{{ config('app.name') }}</a></strong></h3>
+																								<h3><strong><a class="text-light" href="{{ route('welcome') }}">
+																																				<span class="mx-2">{{ config('app.name') }}</span></a></strong></h3>
 																				</div>
 																</a>
 																<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -128,6 +128,11 @@
 
 								<main>
 												<section class="bg-dark min-vh-100 py-4">
+																<div class="container bg-dark mx-auto mt-4">
+																				@auth
+																								<a href="{{ route('home') }}" class="text-light"><i class="fa fa-arrow-left fa-2x"></i></a>
+																				@endauth
+																</div>
 																@yield('content')
 												</section>
 								</main>

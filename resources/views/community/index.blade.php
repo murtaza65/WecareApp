@@ -1,39 +1,51 @@
 @extends('layouts.app')
 
 @section('content')
-				<div class="container">
-								<h2 class="text-center">Manage Your Community</h2>
+				<div class="container card card-body bg-dark my-4">
+								<h2 class="text-center mb-4">Manage Your Community</h2>
 
-								<!-- List of all users -->
 								<div class="row">
-												<div class="col-md-6">
-																<h3>Select Users to Add to Community</h3>
-																<ul class="list-group" id="users-list">
-																				@foreach ($users as $user)
-																								<li class="list-group-item d-flex justify-content-between align-items-center">
-																												{{ $user->name }}
-																												<button class="btn btn-success add-member-btn" data-user-id="{{ $user->id }}">
-																																Add
-																												</button>
-																								</li>
-																				@endforeach
-																</ul>
+												<!-- Users to Add Section -->
+												<div class="col-md-6 mb-4">
+																<div class="card bg-secondary">
+																				<div class="card-header bg-primary text-white">
+																								<h3>Select Users to Add to Community</h3>
+																				</div>
+																				<div class="card-body">
+																								<ul class="list-group" id="users-list">
+																												@foreach ($users as $user)
+																																<li class="list-group-item d-flex justify-content-between align-items-center">
+																																				{{ $user->name }}
+																																				<button class="btn btn-success add-member-btn" data-user-id="{{ $user->id }}">
+																																								Add
+																																				</button>
+																																</li>
+																												@endforeach
+																								</ul>
+																				</div>
+																</div>
 												</div>
 
-												<!-- List of community members -->
-												<div class="col-md-6">
-																<h3>Community Members</h3>
-																<ul class="list-group" id="community-members-list">
-																				@foreach ($communityMembers as $member)
-																								<li class="list-group-item d-flex justify-content-between align-items-center"
-																												data-user-id="{{ $member->id }}">
-																												{{ $member->name }}
-																												<button class="btn btn-danger remove-member-btn">
-																																Remove
-																												</button>
-																								</li>
-																				@endforeach
-																</ul>
+												<!-- Community Members Section -->
+												<div class="col-md-6 mb-4">
+																<div class="card bg-secondary">
+																				<div class="card-header bg-success text-white">
+																								<h3>Community Members</h3>
+																				</div>
+																				<div class="card-body">
+																								<ul class="list-group" id="community-members-list">
+																												@foreach ($communityMembers as $member)
+																																<li class="list-group-item d-flex justify-content-between align-items-center"
+																																				data-user-id="{{ $member->id }}">
+																																				{{ $member->name }}
+																																				<button class="btn btn-danger remove-member-btn">
+																																								Remove
+																																				</button>
+																																</li>
+																												@endforeach
+																								</ul>
+																				</div>
+																</div>
 												</div>
 								</div>
 				</div>
