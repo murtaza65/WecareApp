@@ -1,19 +1,19 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Goal;
 use App\Http\Requests\StoreGoalRequest;
 use App\Http\Requests\UpdateGoalRequest;
+use App\Models\Goal;
 
-class GoalController extends Controller
+class GoalController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $goals = $this->user()->goals; // Get goals for the authenticated user
+        return view('goals.index', compact('goals'));
     }
 
     /**
@@ -21,7 +21,7 @@ class GoalController extends Controller
      */
     public function create()
     {
-        //
+        return view('goals.create');
     }
 
     /**
@@ -29,7 +29,8 @@ class GoalController extends Controller
      */
     public function store(StoreGoalRequest $request)
     {
-        //
+        $goal = $this->user()->goals()->create($request->validated());
+        return redirect()->route('goals.index')->with('success', 'Goal created successfully!');
     }
 
     /**
@@ -37,7 +38,8 @@ class GoalController extends Controller
      */
     public function show(Goal $goal)
     {
-        //
+        $this->authorize('view', $goal); // Ensure user owns the goal
+        return view('goals.show', compact('goal'));
     }
 
     /**
@@ -45,7 +47,8 @@ class GoalController extends Controller
      */
     public function edit(Goal $goal)
     {
-        //
+        $this->authorize('update', $goal);
+        return view('goals.edit', compact('goal'));
     }
 
     /**
@@ -53,7 +56,9 @@ class GoalController extends Controller
      */
     public function update(UpdateGoalRequest $request, Goal $goal)
     {
-        //
+        $this->authorize('update', $goal);
+        $goal->update($request->validated());
+        return redirect()->route('goals.index')->with('success', 'Goal updated successfully!');
     }
 
     /**
@@ -61,6 +66,8 @@ class GoalController extends Controller
      */
     public function destroy(Goal $goal)
     {
-        //
+        $this->authorize('delete', $goal);
+        $goal->delete();
+        return redirect()->route('goals.index')->with('success', 'Goal deleted successfully!');
     }
 }

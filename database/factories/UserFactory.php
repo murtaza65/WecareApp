@@ -17,12 +17,12 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => $this->faker->userName,
-            'email' => $this->faker->unique()->safeEmail,
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
-            'phoneno' => $this->faker->phoneNumber,
+            'username'             => $this->faker->userName,
+            'email'                => $this->faker->unique()->safeEmail,
+            'email_verified_at'    => now(),
+            'password'             => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token'       => Str::random(10),
+            // 'phoneno' => $this->faker->phoneNumber,
             'terms_and_conditions' => true,
         ];
     }
@@ -36,8 +36,8 @@ class UserFactory extends Factory
     {
         return $this->state(fn(array $attributes) => [
             'username' => 'admin',
-            'email' => 'admin@gmail.com',
-            'role' => 0,
+            'email'    => 'admin@gmail.com',
+            'role'     => 0,
             'is_admin' => true,
         ]);
     }
@@ -51,8 +51,8 @@ class UserFactory extends Factory
     {
         return $this->state(fn(array $attributes) => [
             'username' => 'doctor',
-            'email' => 'doctor@gmail.com',
-            'role' => 2,
+            'email'    => 'doctor@gmail.com',
+            'role'     => 2,
         ]);
     }
 
@@ -65,8 +65,8 @@ class UserFactory extends Factory
     {
         return $this->state(fn(array $attributes) => [
             'username' => 'nurse',
-            'email' => 'nurse@gmail.com',
-            'role' => 3,
+            'email'    => 'nurse@gmail.com',
+            'role'     => 3,
         ]);
     }
 
@@ -74,8 +74,8 @@ class UserFactory extends Factory
     {
         return $this->state(fn(array $attributes) => [
             'username' => $this->faker->unique()->userName(),
-            'email' => $this->faker->unique()->safeEmail,
-            'role' => 1,
+            'email'    => $this->faker->unique()->safeEmail,
+            'role'     => 1,
         ]);
     }
 
