@@ -62,4 +62,14 @@ class User extends Authenticatable
         return $this->hasMany(Goal::class, 'user_id');
     }
 
+    public function community()
+    {
+        return $this->belongsTo(Community::class);
+    }
+
+    public function communities()
+    {
+        return $this->belongsToMany(Community::class, 'community_user');
+    }
+
 }

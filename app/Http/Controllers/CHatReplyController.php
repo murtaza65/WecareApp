@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\CHatReply;
 use App\Http\Requests\StoreCHatReplyRequest;
 use App\Http\Requests\UpdateCHatReplyRequest;
+use App\Models\CHatReply;
 
-class CHatReplyController extends Controller
+class ChatReplyController extends Controller
 {
     /**
      * Display a listing of the resource.

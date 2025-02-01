@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->date('due_date')->nullable();
+            $table->integer('progress')->default(0)->nullable();
             $table->boolean('completed')->default(false);
             $table->string('icon')->default('fa-flag');
             $table->timestamps();

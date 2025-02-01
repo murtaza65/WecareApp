@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Chat;
 use App\Http\Requests\StoreChatRequest;
 use App\Http\Requests\UpdateChatRequest;
+use App\Models\Chat;
+use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
@@ -14,6 +14,8 @@ class ChatController extends Controller
     public function index()
     {
         //
+
+        return view('chat.index');
     }
 
     /**
@@ -62,5 +64,16 @@ class ChatController extends Controller
     public function destroy(Chat $chat)
     {
         //
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $userMessage = $request->input('message');
+
+        // Here, you can call any logic for AI, or a simple pre-defined response
+        $botResponse = "I'm an AI bot! I'll respond better when connected to the backend.";
+
+        // Return a JSON response with the bot's message
+        return response()->json(['message' => $botResponse]);
     }
 }

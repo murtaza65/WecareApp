@@ -17,7 +17,7 @@ class ReminderController extends Controller
         $goals     = Goal::all();     // Assuming 'Goal' is a model for goals
         $reminders = Reminder::all(); // Assuming 'Reminder' is a model for reminders
 
-        return view('goals_and_reminders', compact('goals', 'reminders'));
+        return view('reminders.index', compact('goals', 'reminders'));
     }
 
     /**

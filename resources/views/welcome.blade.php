@@ -91,7 +91,7 @@
 																								</a>
 																				</div>
 																</div>
-																<div class="mt-4">
+																<div class="card card-body mt-4">
 																				<h5 class="text-white">User Progress Chart</h5>
 																				<canvas id="progressChart"></canvas>
 																</div>

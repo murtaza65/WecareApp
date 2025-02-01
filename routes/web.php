@@ -62,7 +62,11 @@ Route::middleware([
     Route::resource('/reminders', ReminderController::class);
     Route::resource('/support', SupportController::class);
 
-    Route::resource('/community', CommunityController::class);
+    Route::get('/community', [CommunityController::class, 'index'])->name('community');
+    Route::post('/community/add-member', [CommunityController::class, 'addMember'])->name('community.add_member');
+    Route::post('/community/remove-member', [CommunityController::class, 'removeMember'])->name('community.remove_member');
 
     Route::resource('/profile', ProfileController::class);
+
+    Route::post('/chat/send', [ChatController::class, 'sendMessage']);
 });
