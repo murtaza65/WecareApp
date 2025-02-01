@@ -15,13 +15,8 @@ class Note extends Model
         return $this->morphTo();
     }
 
-    public function ward()
+    public function user()
     {
-        return $this->belongsTo(Ward::class);
-    }
-
-    public function patient()
-    {
-        return $this->belongsTo(Patient::class, 'patient_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

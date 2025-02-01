@@ -4,14 +4,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Messages extends Model
+class Like extends Model
 {
+    /** @use HasFactory<\Database\Factories\LikeFactory> */
     use HasFactory;
+
     protected $guarded = [];
+
+    public function goal()
+    {
+        return $this->belongsTo(Goal::class);
+    }
 
     public function user()
     {
-        # code...
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -49,34 +48,6 @@ class User extends Authenticatable
     {
         # code...
         return $this->hasOne(Profile::class, 'user_id');
-    }
-    public function nurse()
-    {
-        # code...
-        return $this->hasOne(Nurse::class, 'user_id');
-    }
-
-    public function hospital()
-    {
-        # code...
-        return $this->hasOne(Hospital::class, 'hospital_id');
-    }
-
-    public function doctor()
-    {
-        # code...
-        return $this->hasOne(Doctor::class, 'user_id');
-    }
-
-    public function patient()
-    {
-        # code...
-        return $this->hasOne(Patient::class, 'user_id');
-    }
-
-    public function recommendations()
-    {
-        return $this->hasMany(PatientMedicationPlan::class, 'nurse_id');
     }
 
     public function messages()

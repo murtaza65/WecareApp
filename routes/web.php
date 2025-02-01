@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\GoalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\ReminderController;
+use App\Http\Controllers\SupportController;
 use App\Repositories\Schedule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,10 +43,6 @@ Route::middleware(['auth'])->group(
     }
 );
 
-Route::get('/goals', function () {
-    return view('goals.index');
-})->name('goals');
-
 Route::middleware([
     'auth',
     'verified',
@@ -48,32 +50,18 @@ Route::middleware([
     Route::get('/dashboard', function () {
         // return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::get('/chat', function () {
-        // return Inertia::render('Messages');
-    })->name('messages');
-    Route::get('/goals-progress', function () {
-        // return Inertia::render('GoalsProgress');
-    })->name('goals-progress');
 
-    // Route::get('/goals', function () {
-    //     // return Inertia::render('GoalsProgress');
-    // })->name('goals');
+    Route::resource('chat', ChatController::class);
+    // Route::get('/chat', function () {
+    // })->name('messages');
+    Route::resource('/goals/progress', ProgressController::class);
 
-    Route::get('/reminders', function () {
-        // return Inertia::render('Reminders');
-    })->name('reminders');
-    Route::get('/community/support', function () {
-        // return Inertia::render('CommunitySupport');
-    })->name('community-support');
-    Route::get('/goals/add-goal', function () {
-        // return Inertia::render('AddGoal');
-    })->name('add-goal');
+    Route::resource('/goals', GoalController::class);
 
-    Route::get('/community/add-members', function () {
-        // return Inertia::render('AddCommunityMembers');
-    })->name('add-community-members');
+    Route::resource('/reminders', ReminderController::class);
+    Route::resource('/support', SupportController::class);
 
-    Route::get('/profile', function () {
-        // return Inertia::render('AddCommunityMembers');
-    })->name('profile');
+    // Route::get('/community', ->name('add-community-members');
+
+    Route::get('/profile', ProfileController::class);
 });

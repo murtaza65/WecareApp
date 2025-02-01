@@ -90,7 +90,7 @@
 
 <body>
 				<main>
-								@include('partials.topnav')
+								{{--  @include('partials.topnav')  --}}
 								<div class="container goal-container">
 												<h2 class="text-center">Goals & Progress</h2>
 												<div class="list-group">
