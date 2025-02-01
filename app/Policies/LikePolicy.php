@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Policies;
 
 use App\Models\Like;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class LikePolicy
 {
@@ -14,6 +12,7 @@ class LikePolicy
     public function viewAny(User $user): bool
     {
         //
+        return true;
     }
 
     /**
@@ -22,6 +21,7 @@ class LikePolicy
     public function view(User $user, Like $like): bool
     {
         //
+        return true;
     }
 
     /**
@@ -30,6 +30,7 @@ class LikePolicy
     public function create(User $user): bool
     {
         //
+        return true;
     }
 
     /**
@@ -38,6 +39,7 @@ class LikePolicy
     public function update(User $user, Like $like): bool
     {
         //
+        return true;
     }
 
     /**
@@ -46,6 +48,7 @@ class LikePolicy
     public function delete(User $user, Like $like): bool
     {
         //
+        return true;
     }
 
     /**
@@ -54,6 +57,7 @@ class LikePolicy
     public function restore(User $user, Like $like): bool
     {
         //
+        return true;
     }
 
     /**
@@ -62,5 +66,6 @@ class LikePolicy
     public function forceDelete(User $user, Like $like): bool
     {
         //
+        return true;
     }
 }

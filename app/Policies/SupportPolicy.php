@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Policies;
 
 use App\Models\Support;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class SupportPolicy
 {
@@ -14,6 +12,8 @@ class SupportPolicy
     public function viewAny(User $user): bool
     {
         //
+
+        return true;
     }
 
     /**
@@ -22,6 +22,8 @@ class SupportPolicy
     public function view(User $user, Support $support): bool
     {
         //
+
+        return true;
     }
 
     /**
@@ -30,6 +32,8 @@ class SupportPolicy
     public function create(User $user): bool
     {
         //
+
+        return true;
     }
 
     /**
@@ -38,6 +42,8 @@ class SupportPolicy
     public function update(User $user, Support $support): bool
     {
         //
+
+        return true;
     }
 
     /**
@@ -46,6 +52,8 @@ class SupportPolicy
     public function delete(User $user, Support $support): bool
     {
         //
+
+        return true;
     }
 
     /**
@@ -54,6 +62,8 @@ class SupportPolicy
     public function restore(User $user, Support $support): bool
     {
         //
+
+        return true;
     }
 
     /**
@@ -62,5 +72,7 @@ class SupportPolicy
     public function forceDelete(User $user, Support $support): bool
     {
         //
+
+        return true;
     }
 }

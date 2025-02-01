@@ -12,6 +12,7 @@ class ChatReplyPolicy
     public function viewAny(User $user): bool
     {
         //
+        return true;
     }
 
     /**
@@ -20,6 +21,7 @@ class ChatReplyPolicy
     public function view(User $user, ChatReply $chatReply): bool
     {
         //
+        return true;
     }
 
     /**
@@ -28,6 +30,7 @@ class ChatReplyPolicy
     public function create(User $user): bool
     {
         //
+        return true;
     }
 
     /**
@@ -36,6 +39,7 @@ class ChatReplyPolicy
     public function update(User $user, ChatReply $chatReply): bool
     {
         //
+        return true;
     }
 
     /**
@@ -44,6 +48,7 @@ class ChatReplyPolicy
     public function delete(User $user, ChatReply $chatReply): bool
     {
         //
+        return true;
     }
 
     /**
@@ -52,6 +57,7 @@ class ChatReplyPolicy
     public function restore(User $user, ChatReply $chatReply): bool
     {
         //
+        return true;
     }
 
     /**
@@ -60,5 +66,6 @@ class ChatReplyPolicy
     public function forceDelete(User $user, ChatReply $chatReply): bool
     {
         //
+        return true;
     }
 }
