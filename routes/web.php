@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(
 Route::middleware([
     'auth',
     'verified',
+    'default.community',
 ])->group(function () {
     Route::get('/dashboard', function () {
         // return Inertia::render('Dashboard');

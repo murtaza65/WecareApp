@@ -20,7 +20,7 @@ class CommunityController extends BaseController
         $users = User::all();
 
         // Assuming the logged-in user belongs to a community
-        $community = $this->user()->communities()->first();
+        $community = $this->user()->myCommunities()->first();
 
         // Get the members of the logged-in user's community
         $communityMembers = $community ? $community->members : [];
@@ -90,21 +90,20 @@ class CommunityController extends BaseController
     public function addMember(Request $request)
     {
         $user      = User::findOrFail($request->user_id);
-        $community = $this->user()->communities()->first();
+        $community = $this->user()->myCommunities()->first();
 
+        //
         if ($community && ! $community->members->contains($user)) {
-            $community->members()->attach($user);
+            $community->members()->syncWithoutDetaching($user);
         }
 
-        return response()->json(['message' => 'Member added successfully!']);
+        return response()->json(['message' => 'Member added successfully!', "community" => $community]);
     }
 
     public function removeMember(Request $request)
     {
         $user      = User::findOrFail($request->user_id);
-        $community = $this->user()->communities()->first();
-
-        return $community;
+        $community = $this->user()->myCommunities()->first();
 
         if ($community && $community->members->contains($user)) {
             $community->members()->detach($user);

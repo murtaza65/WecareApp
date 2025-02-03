@@ -20,12 +20,12 @@ class Community extends Model
         return $this->belongsToMany(User::class, 'community_user');
     }
 
-    const default_community = "My Community";
+    const DEFAULT_COMMUNITY = "My Community";
 
-    public function createDefaultCommunity()
+    public static function createDefaultCommunity()
     {
         $community = [
-            'name'        => "My Community",
+            'name'        => self::DEFAULT_COMMUNITY,
             'description' => "Default community to add members",
             'created_by'  => auth()->id(),
             'status'      => 'active'];

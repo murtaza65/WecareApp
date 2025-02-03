@@ -67,8 +67,8 @@
 																								.then(response => {
 																												alert(response.data.message);
 																												// Reload the community list
-																												location
-																																.reload(); // You can enhance this to update the list dynamically
+																												//location
+																												//																.reload(); // You can enhance this to update the list dynamically
 																								})
 																								.catch(error => {
 																												console.error(error);

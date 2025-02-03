@@ -1,12 +1,7 @@
 <?php
-
 namespace App\Http;
 
-use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\DoctorMiddleware;
-use App\Http\Middleware\MedicationDueMiddleWare;
-use App\Http\Middleware\NurseMiddleware;
-use App\Http\Middleware\PatientMiddleware;
+use App\Http\Middleware\DefaultCommunityMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -58,20 +53,17 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \App\Http\Middleware\ValidateSignature::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'doctor' => DoctorMiddleware::class,
-        'patient' => PatientMiddleware::class,
-        'admin' => AdminMiddleware::class,
-        'nurse' => NurseMiddleware::class,
-        'medication.due' => MedicationDueMiddleWare::class,
+        'auth'              => \App\Http\Middleware\Authenticate::class,
+        'auth.basic'        => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'auth.session'      => \Illuminate\Session\Middleware\AuthenticateSession::class,
+        'cache.headers'     => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can'               => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest'             => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'password.confirm'  => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'signed'            => \App\Http\Middleware\ValidateSignature::class,
+        'throttle'          => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified'          => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'default.community' => DefaultCommunityMiddleware::class,
+
     ];
 }
