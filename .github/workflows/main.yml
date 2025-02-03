@@ -1,0 +1,15 @@
+ name: Keep Codespace Active
+
+on:
+  schedule:
+    # Runs every 30 minutes
+    - cron: '*/10 * * * *'
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Ping Codespace
+      run: |
+        curl -s https://super-trout-wqj94gwpqvq2wwg.github.dev:9000/
