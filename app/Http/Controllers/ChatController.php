@@ -71,7 +71,7 @@ class ChatController extends Controller
         $userMessage = $request->input('message');
 
         // Here, you can call any logic for AI, or a simple pre-defined response
-        $botResponse = "I'm an AI bot! I'll respond better when connected to the backend.";
+        $botResponse = "Hello, How can i help you?";
 
         // Return a JSON response with the bot's message
         return response()->json(['message' => $botResponse]);

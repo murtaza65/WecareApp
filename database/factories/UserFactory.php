@@ -22,7 +22,6 @@ class UserFactory extends Factory
             'email_verified_at'    => now(),
             'password'             => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token'       => Str::random(10),
-            // 'phoneno' => $this->faker->phoneNumber,
             'terms_and_conditions' => true,
         ];
     }
@@ -37,8 +36,6 @@ class UserFactory extends Factory
         return $this->state(fn(array $attributes) => [
             'username' => 'admin',
             'email'    => 'admin@gmail.com',
-            'role'     => 0,
-            'is_admin' => true,
         ]);
     }
 
@@ -47,12 +44,11 @@ class UserFactory extends Factory
      *
      * @return static
      */
-    public function doctor(): static
+    public function user1(): static
     {
         return $this->state(fn(array $attributes) => [
             'username' => 'doctor',
-            'email'    => 'doctor@gmail.com',
-            'role'     => 2,
+            'email'    => 'user1@gmail.com',
         ]);
     }
 
@@ -61,21 +57,19 @@ class UserFactory extends Factory
      *
      * @return static
      */
-    public function nurse(): static
+    public function user2(): static
     {
         return $this->state(fn(array $attributes) => [
             'username' => 'nurse',
-            'email'    => 'nurse@gmail.com',
-            'role'     => 3,
+            'email'    => 'user2@gmail.com',
         ]);
     }
 
-    public function patient(): static
+    public function users(): static
     {
         return $this->state(fn(array $attributes) => [
             'username' => $this->faker->unique()->userName(),
             'email'    => $this->faker->unique()->safeEmail,
-            'role'     => 1,
         ]);
     }
 

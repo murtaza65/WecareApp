@@ -1,8 +1,6 @@
 <?php
-
 namespace Database\Seeders;
 
-use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -15,15 +13,12 @@ class UserSeeder extends Seeder
     {
         //
         // Create the admin user
-        User::factory()->admin()->create();
+        User::factory()->user1()->create();
 
         // Create the doctor user
-        User::factory()->doctor()->hasDoctor(1)->create();
-
-        // Create the nurse user
-        User::factory()->nurse()->hasNurse(1)->create();
+        User::factory()->user2()->create();
 
         // Create the patient user
-        User::factory(10)->patient()->hasPatient(1)->create();
+        User::factory(10)->users()->create();
     }
 }
