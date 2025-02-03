@@ -19,6 +19,6 @@ class UserSeeder extends Seeder
         User::factory()->user2()->create();
 
         // Create the patient user
-        // User::factory(10)->users()->create();
+        User::factory(10)->users()->create();
     }
 }
