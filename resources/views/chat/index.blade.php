@@ -132,15 +132,14 @@
 								<!-- User Input -->
 								<div class="input-group mt-3">
 												<input id="userInput" type="text" class="form-control" placeholder="Type a message..." />
-												<button id="sendBtn" class="btn btn-primary">
+												<button id="sendBtn" class="btn btn-primary" onclick="">
 																<i class="fas fa-paper-plane"></i>
 												</button>
 								</div>
 				</div>
-@endsection
 
-@push('scripts')
-				<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+				{{--  @push('scripts')  --}}
 				<script>
 								document.addEventListener('DOMContentLoaded', function() {
 												const sendButton = document.getElementById('sendBtn');
@@ -171,7 +170,7 @@
 																				chatBox.scrollTop = chatBox.scrollHeight;
 
 																				// Send user message to backend (AJAX)
-																				axios.post('/chat/send', {
+																				axios.post('/api/chat/send', {
 																												message: inputText
 																								})
 																								.then(response => {
@@ -196,4 +195,5 @@
 												}
 								});
 				</script>
-@endpush
+				{{--  @endpush  --}}
+@endsection

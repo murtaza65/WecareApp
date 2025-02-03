@@ -68,5 +68,4 @@ Route::middleware([
 
     Route::resource('/profile', ProfileController::class);
 
-    Route::post('/chat/send', [ChatController::class, 'sendMessage']);
 });
