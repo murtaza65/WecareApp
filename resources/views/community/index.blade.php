@@ -57,7 +57,6 @@
 												// Add community member
 												document.querySelectorAll('.add-member-btn').forEach(button => {
 																button.addEventListener('click', function() {
-																				alert("Clicked");
 																				const userId = this.getAttribute('data-user-id');
 
 																				// Make AJAX call to add member
@@ -67,8 +66,8 @@
 																								.then(response => {
 																												alert(response.data.message);
 																												// Reload the community list
-																												//location
-																												//																.reload(); // You can enhance this to update the list dynamically
+																												location
+																																.reload(); // You can enhance this to update the list dynamically
 																								})
 																								.catch(error => {
 																												console.error(error);
