@@ -7,6 +7,5 @@
             "variant": "3"
         }
     },
-    "remoteUser": "vscode",
-    "runArgs": ["--env-file", ".devcontainer/devcontainer.env"]
+    "remoteUser": "vscode"
 }
