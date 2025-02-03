@@ -121,9 +121,9 @@
 								<div class="chat-box" id="chatBox">
 												<div id="messages">
 																<div class="message bot">
-																				<div class="msg-bubble">
+																				<div class="msg-bubble my-1">
 																								<i class="fas fa-robot"></i>
-																								<p>Hello! How can I help you today?</p>
+																								<p>Hello! What recipe could I help you with today?</p>
 																				</div>
 																</div>
 												</div>
@@ -140,6 +140,7 @@
 
 
 				{{--  @push('scripts')  --}}
+				<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 				<script>
 								document.addEventListener('DOMContentLoaded', function() {
 												const sendButton = document.getElementById('sendBtn');
@@ -159,14 +160,26 @@
 																				const userMessageDiv = document.createElement('div');
 																				userMessageDiv.classList.add('message', 'user');
 																				userMessageDiv.innerHTML = `
-                <div class="msg-bubble">
-                    <i class="fas fa-user"></i>
-                    <p>${inputText}</p>
-                </div>
-            `;
+                                    <div class="msg-bubble">
+                                        <i class="fas fa-user"></i>
+                                        <p>${inputText}</p>
+                                    </div>
+                                `;
 																				messagesDiv.appendChild(userMessageDiv);
 
 																				// Scroll to bottom of chat
+																				chatBox.scrollTop = chatBox.scrollHeight;
+
+																				// Add a "loading" message
+																				const loadingDiv = document.createElement('div');
+																				loadingDiv.classList.add('message', 'bot', 'loading-message', 'my-1');
+																				loadingDiv.innerHTML = `
+                                    <div class="msg-bubble">
+                                        <i class="fas fa-robot"></i>
+                                        <p><em>Thinking...</em></p>
+                                    </div>
+                                `;
+																				messagesDiv.appendChild(loadingDiv);
 																				chatBox.scrollTop = chatBox.scrollHeight;
 
 																				// Send user message to backend (AJAX)
@@ -174,19 +187,24 @@
 																												message: inputText
 																								})
 																								.then(response => {
+																												// Remove loading message
+																												document.querySelector('.loading-message').remove();
+
+																												// Display bot response
 																												const botMessageDiv = document.createElement('div');
 																												botMessageDiv.classList.add('message', 'bot');
 																												botMessageDiv.innerHTML = `
-                        <div class="msg-bubble">
-                            <i class="fas fa-robot"></i>
-                            <p>${response.data.message}</p>
-                        </div>
-                    `;
+                                            <div class="msg-bubble">
+                                                <i class="fas fa-robot"></i>
+                                                <p>${response.data.message}</p>
+                                            </div>
+                                        `;
 																												messagesDiv.appendChild(botMessageDiv);
-																												chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom again
+																												chatBox.scrollTop = chatBox.scrollHeight;
 																								})
 																								.catch(error => {
 																												console.error('Error sending message:', error);
+																												document.querySelector('.loading-message').remove(); // Remove loading if error
 																								});
 
 																				// Clear input field

@@ -18,4 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/chat/send', [ChatController::class, 'sendMessage']);
+// Route::post('/chat/send', [ChatController::class, 'sendMessage']);
+
+// Route::post('/chat/send', [ChatController::class, 'botChat']);
+// Route::post('/chat/send', [ChatController::class, 'getAIResponse']);
+
+// Route::post('/chat/send', [ChatController::class, 'recipeApi2']);
+
+Route::post('/chat/send', [ChatController::class, 'getGeminiAIResponse']);
