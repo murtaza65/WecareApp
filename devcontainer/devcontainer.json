@@ -1,0 +1,12 @@
+{
+    "name": "WeCareApp",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "variant": "3"
+        }
+    },
+    "remoteUser": "vscode",
+    "runArgs": ["--env-file", ".devcontainer/devcontainer.env"]
+}
