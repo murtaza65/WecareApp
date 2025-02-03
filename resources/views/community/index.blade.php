@@ -15,7 +15,7 @@
 																								<ul class="list-group" id="users-list">
 																												@foreach ($users as $user)
 																																<li class="list-group-item d-flex justify-content-between align-items-center">
-																																				{{ $user->name }}
+																																				{{ $user->username }}
 																																				<button class="btn btn-success add-member-btn" data-user-id="{{ $user->id }}">
 																																								Add
 																																				</button>
@@ -37,7 +37,7 @@
 																												@foreach ($communityMembers as $member)
 																																<li class="list-group-item d-flex justify-content-between align-items-center"
 																																				data-user-id="{{ $member->id }}">
-																																				{{ $member->name }}
+																																				{{ $member->username }}
 																																				<button class="btn btn-danger remove-member-btn">
 																																								Remove
 																																				</button>
@@ -50,51 +50,52 @@
 								</div>
 				</div>
 
-				@push('scripts')
-								<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-								<script>
-												document.addEventListener('DOMContentLoaded', function() {
-																// Add community member
-																document.querySelectorAll('.add-member-btn').forEach(button => {
-																				button.addEventListener('click', function() {
-																								const userId = this.getAttribute('data-user-id');
+				{{--  @push('scripts')  --}}
+				{{--  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  --}}
+				<script>
+								document.addEventListener('DOMContentLoaded', function() {
+												// Add community member
+												document.querySelectorAll('.add-member-btn').forEach(button => {
+																button.addEventListener('click', function() {
+																				alert("Clicked");
+																				const userId = this.getAttribute('data-user-id');
 
-																								// Make AJAX call to add member
-																								axios.post('/community/add-member', {
-																																user_id: userId
-																												})
-																												.then(response => {
-																																alert(response.data.message);
-																																// Reload the community list
-																																location
-																																				.reload(); // You can enhance this to update the list dynamically
-																												})
-																												.catch(error => {
-																																console.error(error);
-																												});
-																				});
-																});
-
-																// Remove community member
-																document.querySelectorAll('.remove-member-btn').forEach(button => {
-																				button.addEventListener('click', function() {
-																								const userId = this.closest('li').getAttribute('data-user-id');
-
-																								// Make AJAX call to remove member
-																								axios.post('/community/remove-member', {
-																																user_id: userId
-																												})
-																												.then(response => {
-																																alert(response.data.message);
-																																// Reload the community list
-																																location.reload(); // Again, consider dynamically updating the list
-																												})
-																												.catch(error => {
-																																console.error(error);
-																												});
-																				});
+																				// Make AJAX call to add member
+																				axios.post('/community/add-member', {
+																												user_id: userId
+																								})
+																								.then(response => {
+																												alert(response.data.message);
+																												// Reload the community list
+																												location
+																																.reload(); // You can enhance this to update the list dynamically
+																								})
+																								.catch(error => {
+																												console.error(error);
+																								});
 																});
 												});
-								</script>
-				@endpush
+
+												// Remove community member
+												document.querySelectorAll('.remove-member-btn').forEach(button => {
+																button.addEventListener('click', function() {
+																				const userId = this.closest('li').getAttribute('data-user-id');
+
+																				// Make AJAX call to remove member
+																				axios.post('/community/remove-member', {
+																												user_id: userId
+																								})
+																								.then(response => {
+																												alert(response.data.message);
+																												// Reload the community list
+																												location.reload(); // Again, consider dynamically updating the list
+																								})
+																								.catch(error => {
+																												console.error(error);
+																								});
+																});
+												});
+								});
+				</script>
+				{{--  @endpush  --}}
 @endsection

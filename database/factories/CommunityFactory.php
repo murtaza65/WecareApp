@@ -1,7 +1,7 @@
 <?php
-
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +18,11 @@ class CommunityFactory extends Factory
     {
         return [
             //
+
+            'name'        => $this->faker->unique()->company,                     // Generate a unique company name as the community name
+            'description' => $this->faker->paragraph,                             // Generate a random paragraph as the description
+            'created_by'  => User::factory(),                                     // Create a user or use an existing one
+            'status'      => $this->faker->randomElement(['active', 'archived']), // Randomly assign status
         ];
     }
 }

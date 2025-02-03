@@ -5,6 +5,7 @@ use App\Http\Requests\StoreCommunityRequest;
 use App\Http\Requests\UpdateCommunityRequest;
 use App\Models\Community;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class CommunityController extends BaseController
 {
@@ -41,6 +42,15 @@ class CommunityController extends BaseController
     public function store(StoreCommunityRequest $request)
     {
         //
+
+        $community = $this->user()->communities()->create(
+            $request->validated()
+        );
+
+        // Get the members of the logged-in user's community
+        $communityMembers = $community ? $community->members : [];
+        return redirect('community.index')->with('success', 'The user' . '' . ' has been added to your community.');
+
     }
 
     /**
@@ -74,4 +84,33 @@ class CommunityController extends BaseController
     {
         //
     }
+
+    // app/Http/Controllers/CommunityController.php
+
+    public function addMember(Request $request)
+    {
+        $user      = User::findOrFail($request->user_id);
+        $community = $this->user()->communities()->first();
+
+        if ($community && ! $community->members->contains($user)) {
+            $community->members()->attach($user);
+        }
+
+        return response()->json(['message' => 'Member added successfully!']);
+    }
+
+    public function removeMember(Request $request)
+    {
+        $user      = User::findOrFail($request->user_id);
+        $community = $this->user()->communities()->first();
+
+        return $community;
+
+        if ($community && $community->members->contains($user)) {
+            $community->members()->detach($user);
+        }
+
+        return response()->json(['message' => 'Member removed successfully!']);
+    }
+
 }
