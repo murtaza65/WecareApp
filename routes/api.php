@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ReminderControllerAPI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::post('/chat/send', [ChatController::class, 'recipeApi2']);
 
 Route::post('/chat/send', [ChatController::class, 'getGeminiAIResponse']);
+
+Route::resource('reminders', ReminderControllerAPI::class);

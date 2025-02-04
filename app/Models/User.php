@@ -62,6 +62,12 @@ class User extends Authenticatable
         return $this->hasMany(Goal::class, 'user_id');
     }
 
+    public function reminders()
+    {
+        # code...
+        return $this->hasMany(Reminder::class, 'user_id');
+    }
+
     public function community()
     {
         return $this->belongsTo(Community::class);

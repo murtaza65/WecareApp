@@ -6,18 +6,22 @@ use App\Http\Requests\UpdateReminderRequest;
 use App\Models\Goal;
 use App\Models\Reminder;
 
-class ReminderController extends Controller
+class ReminderController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Goal $goal = null)
     {
-                                      //
-        $goals     = Goal::all();     // Assuming 'Goal' is a model for goals
-        $reminders = Reminder::all(); // Assuming 'Reminder' is a model for reminders
+        $goals     = $this->user()->goals;
+        $reminders = $this->user()->reminders;
 
-        return view('reminders.index', compact('goals', 'reminders'));
+        if ($goal) { //
+            $goals     = Goal::where('id', $goal->id)->get();
+            $reminders = $goal->reminders;
+        }
+
+        return view('reminders.index', compact('goal', 'goals', 'reminders'));
     }
 
     /**

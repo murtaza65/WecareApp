@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,7 +10,7 @@ class UpdateReminderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +22,8 @@ class UpdateReminderRequest extends FormRequest
     {
         return [
             //
+            'message' => 'required|string|max:255',
+            'time'    => 'required|date_format:H:i',
         ];
     }
 }

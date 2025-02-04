@@ -61,6 +61,7 @@ Route::middleware([
     Route::resource('/goals', GoalController::class);
 
     Route::resource('/reminders', ReminderController::class);
+    Route::get('/reminders/goals/{goal}', [ReminderController::class, 'index']);
     Route::resource('/support', SupportController::class);
 
     Route::get('/community', [CommunityController::class, 'index'])->name('community');

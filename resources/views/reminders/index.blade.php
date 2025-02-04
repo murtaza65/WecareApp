@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 				<div class="container goals-container">
 								<h2 class="text-center wecare-logo">Goals & Progress</h2>
 
@@ -10,14 +11,18 @@
 																<div class="goal-item">
 																				<div class="goal-info">
 																								<i class="{{ $goal->icon }} goal-icon"></i>
-																								<span>{{ $goal->name }}</span>
+																								<span>{{ $goal->title }}</span>
 																				</div>
-																				<div class="progress goal-progress">
+																				<div class="progress goal-progress ">
 																								<div class="progress-bar" style="width: {{ $goal->progress }}%" role="progressbar"
 																												aria-valuenow="{{ $goal->progress }}" aria-valuemin="0" aria-valuemax="100">
 																												{{ $goal->progress }}%
 																								</div>
+																								<span class="text-dark">
+																												{{ $goal->progress }}%
+																								</span>
 																				</div>
+
 																</div>
 												@endforeach
 								</div>
@@ -42,7 +47,7 @@
 																				<tr>
 																								<td>{{ $index + 1 }}</td>
 																								<td>{{ $reminder->message }}</td>
-																								<td>{{ $reminder->time }}</td>
+																								<td>{{ $reminder->reminder_time }}</td>
 																								<td>
 																												<button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#reminderModal"
 																																data-id="{{ $reminder->id }}" data-message="{{ $reminder->message }}"
@@ -81,9 +86,8 @@
 												</div>
 								</div>
 				</div>
-@endsection
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-@section('scripts')
 				<script>
 								// Set up modal for editing reminder
 								const reminderModal = new bootstrap.Modal(document.getElementById('reminderModal'), {
@@ -113,7 +117,9 @@
 																				// Add reminder API call
 																				axios.post('/api/reminders', {
 																												message,
-																												time
+																												time,
+																												goal_id,
+																												user_id,
 																								})
 																								.then(response => {
 																												location.reload();
@@ -149,9 +155,7 @@
 												}
 								}
 				</script>
-@endsection
 
-@section('styles')
 				<style scoped>
 								/* Additional Styles for Reminders */
 								.reminders-table th,

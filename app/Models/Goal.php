@@ -26,7 +26,7 @@ class Goal extends Model
 
     public function reminders()
     {
-        return $this->hasMany(Progress::class);
+        return $this->hasMany(Reminder::class, 'goal_id');
     }
 
     public function likes()
