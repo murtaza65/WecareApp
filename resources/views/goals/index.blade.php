@@ -20,11 +20,27 @@
 																								</div>
 
 																								<div class="d-flex justify-content-between">
-																												<button class="btn btn-outline-light btn-sm"><i class="far fa-heart"></i> Like</button>
+
+
+																												<a href="{{ route('reminders.goals', $goal) }}" class="btn btn-outline-light btn-sm"><i
+																																				class="fa fa-clock"></i> </a>
+																												<form action="{{ route('likes.goals.store', ['goal' => $goal->id]) }}" method="POST"
+																																class="d-inline">
+																																@csrf
+																																@method('POST')
+																																<button type="submit" class="btn btn-outline-light btn-sm">
+																																				@if ($goal->likes->count() > 0)
+																																								<span class="text-danger"><i class="fa fa-heart"></i></span>
+																																				@else
+																																								<span><i class="far fa-heart"></i></span>
+																																				@endif
+
+																																</button>
+																												</form>
 																												<form action="{{ route('goals.destroy', $goal) }}" method="POST" class="d-inline">
 																																@csrf
 																																@method('DELETE')
-																																<button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
+																																<button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
 																												</form>
 																								</div>
 																				</div>

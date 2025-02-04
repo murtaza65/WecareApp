@@ -66,12 +66,22 @@
 								<div class="modal-dialog">
 												<div class="modal-content">
 																<div class="modal-header">
-																				<h5 class="modal-title" id="reminderModalLabel">Add/Edit Reminder</h5>
+																				<h5 class="modal-title text-dark" id="reminderModalLabel">Add/Edit Reminder</h5>
 																				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 																</div>
 																<div class="modal-body">
 																				<form id="reminderForm">
 																								<input type="hidden" id="reminderId">
+																								<div class="mb-3">
+																												<label for="goalSelect" class="form-label">Select Goal</label>
+																												<select id="goalSelect" name="goal_id" class="form-select" required>
+																																<option value="">-- Select a Goal --</option>
+																																@foreach ($goals as $goal)
+																																				<option value="{{ $goal->id }}">{{ $goal->title }}</option>
+																																@endforeach
+																												</select>
+																								</div>
+
 																								<div class="mb-3">
 																												<label for="reminderMessage" class="form-label">Message</label>
 																												<input type="text" class="form-control" id="reminderMessage" required>
@@ -102,12 +112,20 @@
 																const reminderId = document.getElementById('reminderId').value;
 																const message = document.getElementById('reminderMessage').value;
 																const time = document.getElementById('reminderTime').value;
+																const goal_id = document.getElementById('goalSelect').value;
+
+																const user_id = @json(auth()->id());
+
+																if (!goal_id)
+																				alert("You need a goal to set a reminder");
 
 																if (reminderId) {
 																				// Edit reminder API call
 																				axios.put(`/api/reminders/${reminderId}`, {
 																												message,
-																												time
+																												time,
+																												goal_id,
+																												user_id
 																								})
 																								.then(response => {
 																												location.reload();
@@ -118,8 +136,8 @@
 																				axios.post('/api/reminders', {
 																												message,
 																												time,
-																												goal_id,
 																												user_id,
+																												goal_id
 																								})
 																								.then(response => {
 																												location.reload();

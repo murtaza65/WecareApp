@@ -4,6 +4,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgressController;
@@ -59,9 +60,11 @@ Route::middleware([
     Route::resource('/goals/progress', ProgressController::class);
 
     Route::resource('/goals', GoalController::class);
+    Route::resource('/likes', LikeController::class);
+    Route::post('/likes/goals/store/{goal}', [LikeController::class, 'store'])->name('likes.goals.store');
 
     Route::resource('/reminders', ReminderController::class);
-    Route::get('/reminders/goals/{goal}', [ReminderController::class, 'index']);
+    Route::get('/reminders/goals/{goal}', [ReminderController::class, 'index'])->name('reminders.goals');
     Route::resource('/support', SupportController::class);
 
     Route::get('/community', [CommunityController::class, 'index'])->name('community');
